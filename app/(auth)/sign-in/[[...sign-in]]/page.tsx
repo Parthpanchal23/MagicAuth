@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React,{Suspense} from "react";
 import Image from "next/image";
 import { SignIn, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import { ShadowIcon } from "@radix-ui/react-icons";
@@ -16,11 +16,14 @@ const SignInPage = () => {
         </div>
         <div className="flex items-center justify-center mt-8">
           <ClerkLoaded>
+            <Suspense fallback={<p>loading</p>}>
+
             <SignIn signUpUrl="/sign-up" forceRedirectUrl="/dashboard"/>
+            </Suspense>
           </ClerkLoaded>
-          <ClerkLoading>
+          {/* <ClerkLoading>
            <ShadowIcon className=" animate-ping text-muted-foreground" width={50} height={50}/>
-          </ClerkLoading>
+          </ClerkLoading> */}
         </div>
       </div>
 

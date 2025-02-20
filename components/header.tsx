@@ -1,5 +1,5 @@
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
-import HeaderLogo from "./heaader-logo";
+import HeaderLogo from "./header-logo";
 import { ShadowIcon } from "@radix-ui/react-icons";
 import WelcomeMessage from "./welcome-msg";
 

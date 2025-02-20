@@ -31,7 +31,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-
         <ClerkProvider afterSignOutUrl="/">
         <Theme accentColor="crimson" grayColor="sand" radius="large" scaling="95%">
         {children}
