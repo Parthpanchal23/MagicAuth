@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ClerkLoaded, ClerkLoading, SignUp } from "@clerk/nextjs";
 import Image from "next/image";
 import { ShadowIcon } from "@radix-ui/react-icons";
@@ -15,7 +15,9 @@ const SignUpPage = () => {
         </div>
         <div className="flex items-center justify-center mt-8">
           <ClerkLoaded>
+            <Suspense fallback={<ClerkLoading />}>
             <SignUp  signInUrl="/sign-in" forceRedirectUrl="/dashbaord" />
+            </Suspense>
           </ClerkLoaded>
           <ClerkLoading>
             <ShadowIcon className=" animate-ping text-muted-foreground" width={50} height={50}/>

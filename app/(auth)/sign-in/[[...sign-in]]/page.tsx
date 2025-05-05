@@ -1,10 +1,19 @@
 "use client"
-import React,{Suspense} from "react";
+import React,{Suspense, useEffect} from "react";
 import Image from "next/image";
-import { SignIn, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
-import { ShadowIcon } from "@radix-ui/react-icons";
+import { SignIn, ClerkLoaded, ClerkLoading, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
+  const {user,isSignedIn}=useUser();
+  console.log("user",user,isSignedIn);
+  const router=useRouter();
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push('/dashboard');
+    } 
+  }, [isSignedIn, router]);
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
       <div className="h-full lg:flex  flex-col items-center justify-center px-4">
@@ -16,7 +25,7 @@ const SignInPage = () => {
         </div>
         <div className="flex items-center justify-center mt-8">
           <ClerkLoaded>
-            <Suspense fallback={<p>loading</p>}>
+            <Suspense fallback={<ClerkLoading />}>
 
             <SignIn signUpUrl="/sign-up" forceRedirectUrl="/dashboard"/>
             </Suspense>
